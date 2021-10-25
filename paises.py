@@ -46,7 +46,7 @@ def mostrar_poluacao(pais=None):
         lista_de_paises = parsing(resposta)
         if lista_de_paises:
             for pais in lista_de_paises:
-                print(f"{pais['name']}: {pais['population']}")
+                print(f"{pais['name']}: {pais['population']} habitantes")
         else:
             print(f'{pais} Não existe')
 
@@ -72,6 +72,14 @@ def mostrar_moeda(pais=None):
             print(f'{pais} Não existe')
 
 
+def ler_nome_do_pais():
+    try:
+        nome_do_pais = sys.argv[2]
+        return nome_do_pais
+    except:
+        return
+
+
 if __name__ == '__main__':
     if len(sys.argv) == 1:
         print('## Bem vindo ao sistema de paises ##')
@@ -83,16 +91,10 @@ if __name__ == '__main__':
             numero_de_paises = contagem_paises()
             print(f'Contem {numero_de_paises} no mundo.')
         elif argumento1 == 'populacao':
-            try:
-                argumento2 = sys.argv[2]
-                mostrar_poluacao(argumento2)
-            except:
-                argumento2 = None
-                mostrar_poluacao(argumento2)
+            nome_do_pais = ler_nome_do_pais()
+            mostrar_poluacao(nome_do_pais)
         elif argumento1 == 'moeda':
-            try:
-                argumento2 = sys.argv[2]
-                mostrar_moeda(argumento2)
-            except:
-                argumento2 = None
-                mostrar_moeda(argumento2)
+            nome_do_pais = ler_nome_do_pais()
+            mostrar_moeda(nome_do_pais)
+        else:
+            print('Argumento invalido')
